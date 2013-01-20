@@ -20,6 +20,8 @@ Uruchomienie, zakończenie i status zakończenia zadania odnotowywany jest w log
 Strumienie stdout i stderr przekierowywane są do plików o nazwach
 job[nr_zadania_w_pliku_konfiguracyjnym].stdout (... .stderr) w katalogu /tmp.
 
+W programie użyłem biblioteki anacron'a matchrx.h na licencji GNU.
+
 
 Format pliku konfiguracyjnego
 -----------------------------
