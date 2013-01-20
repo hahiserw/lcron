@@ -8,6 +8,7 @@
 #include <signal.h>
 #include <stdarg.h>
 #include <fcntl.h>
+#include <sys/stat.h>
 #include <string.h>
 #include "matchrx.h"
 
@@ -17,7 +18,7 @@
 
 
 static const char *DEFAULT_LOG_FILE = "/tmp/lcrond.log";
-static const char *DEFAULT_CONFIG_FILE = "/home/hahi/Documents/lcron/lcron.conf";
+static const char *DEFAULT_CONFIG_FILE = "/etc/lcron.conf";
 static const char *OUTPUT_FILES = "/tmp";
 
 
@@ -405,7 +406,6 @@ int parse_field(char *expression, int max_value, int now)
 			temp = (max_value + value - now) % max_value;
 			if (await > temp)
 				await = temp;
-			printf("await, temp: %i, %i\n", await, temp);
 		// Gwiazdka
 		} else if (match_rx("*", chunk, 1)) {
 			log_message(2, "asterisk: all values");
