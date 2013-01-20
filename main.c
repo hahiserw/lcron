@@ -21,6 +21,13 @@ static const char *DEFAULT_LOG_FILE = "/tmp/lcrond.log";
 static const char *DEFAULT_CONFIG_FILE = "/etc/lcron.conf";
 static const char *OUTPUT_FILES = "/tmp";
 
+static const int month_days[] = { 0,
+	31, 28, 31,
+	30, 31, 30,
+	31, 31,	30,
+	31, 30, 31
+};
+
 
 struct Job {
 	char *M, *H, *d, *m, *w;
@@ -298,7 +305,13 @@ int get_next_run(struct Job *job)
 		exit(EXIT_FAILURE);
 	}
 
-	int days_in_month = 31; // Bardzo lamersko
+	// Czy to zawsze będzie dobrze?
+	int days_in_month = month_days[tmp->tm_mday];
+	if (tmp->tm_mday == 2) {
+		if((tmp->tm_year % 4 == 0 && tmp->tm_year % 100 != 0) || tmp->tm_year % 400 == 0)
+			days_in_month + 1;
+	}
+
 	int seconds = 60;
 
 	int minutes = parse_field(job->M, 60, tmp->tm_min);
@@ -553,8 +566,8 @@ void run_job(struct Job *job)
 		sprintf(out_file, "%s/%s.stdout", OUTPUT_FILES, job->name);
 		sprintf(err_file, "%s/%s.stderr", OUTPUT_FILES, job->name);
 
-		int child_stdout = open(out_file, O_RDWR | O_CREAT, S_IRUSR | S_IWUSR);
-		int child_stderr = open(err_file, O_RDWR | O_CREAT, S_IRUSR | S_IWUSR);
+		int child_stdout = open(out_file, O_WRONLY | O_CREAT, S_IRUSR | S_IWUSR);
+		int child_stderr = open(err_file, O_WRONLY | O_CREAT, S_IRUSR | S_IWUSR);
 
 		dup2(child_stdout, 1);
 		dup2(child_stderr, 2);
