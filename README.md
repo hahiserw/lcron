@@ -12,7 +12,7 @@ do uruchomienia i zasypia. Proces jest powtarzany dopóki demon działa.
 
 Wszystkie informacje zapisywane są do logu (/tmp/lcrond.log).
 By dostać bardziej szczegółowe informacje na temat pracy demona w argumentach
-należy dopisać `-v`, by dostać jeszcze bardziej szczegółowe `-vv` lub `-vvv`.
+należy dopisać `-v`, by dostać jeszcze bardziej szczegółowe `-vv`.
 
 Program można również uruchomić bez przejścia w tryb demona: `-f`.
 
@@ -45,9 +45,14 @@ np. `5-10` (5, 6, 7, 8, 9)
 Istnieje również możliwość łączenia tych konfiguracje oddzielając je przecinkami.
 
 
-`32 18 * * * ls /home` wyświetli użytkowników codziennie o 18:32
-`0 0,10-20/4 * * * cp -ur /etc /tmp/etc` uaktualni wszystkie pliki w katalogu /tmp/etc
-z tymi w /etc co 4 godziny od 10 do 20 lub gdy godzina będzie północ
+    32 18 * * * ls /home
+
+wyświetli katalogi użytkowników codziennie o 18:32.
+
+    0 0,10-20/4 * * * cp -ur /etc /tmp/etc
+
+uaktualni wszystkie pliki w katalogu /tmp/etc z tymi w /etc co 4 godziny
+od 10 do 20 lub gdy godziną będzie północ.
 
 
 Instalacja
