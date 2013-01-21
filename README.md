@@ -47,18 +47,18 @@ Istnieje również możliwość łączenia tych konfiguracje oddzielając je prz
 
     32 18 * * * ls /home
 
-wyświetli katalogi użytkowników codziennie o 18:32.
+Wyświetli katalogi użytkowników codziennie o 18:32.
 
     0 0,10-20/4 * * * cp -ur /etc /tmp/etc
 
-uaktualni wszystkie pliki w katalogu /tmp/etc z tymi w /etc co 4 godziny
+Uaktualni wszystkie pliki w katalogu /tmp/etc z tymi w /etc co 4 godziny
 od 10 do 20 lub gdy godziną będzie północ.
 
 
 Instalacja
 ----------
 
-`$ make && sudo make install`
+    $ make && sudo make install
 
 Program zostanie zainstalowany w /usr/bin.
 
@@ -66,4 +66,4 @@ Program zostanie zainstalowany w /usr/bin.
 Dezinstalacja
 -------------
 
-`$ sudo make remove`
+    $ sudo make remove
